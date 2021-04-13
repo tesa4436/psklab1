@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head/>
+<h:body>
+    <h2>#{itemDetails.item.name}</h2>
+
+    <ui:repeat value="#{itemDetails.item.photos}" var="photo">
+        <img src="api/photo/#{photo.id}"/>
+    </ui:repeat>
+
+    <h:form prependid="false" enctype="multipart/form-data">
+        <h:panelGrid>
+            <h:inputFile value="#{itemDetails.photoToBeUploaded}" required="true"/>
+            <h:commandButton action="#{itemDetails.uploadPhoto}"
+                             value="Upload photo"/>
+            <input type="hidden" name="itemId" value="#{itemDetails.item.id}" />
+        </h:panelGrid>
+    </h:form>
+
+    <h:link outcome="items" value="Back to items page"/>
+
+</h:body>
+</html>

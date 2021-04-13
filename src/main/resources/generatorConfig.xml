@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="psklab1" targetRuntime="MyBatis3Simple">
+        <jdbcConnection driverClass="org.h2.Driver"
+                        connectionURL="jdbc:h2:~/h2database/psklab1;AUTO_SERVER=TRUE"
+                        userId="sa"
+                        password="sa">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.teo.mybatis.model" targetProject="src/main/java" />
+
+        <sqlMapGenerator targetPackage="com.teo.mybatis.xml" targetProject="src/main/java" />
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.teo.mybatis.dao" targetProject="src/main/java" />
+
+
+
+        <table tableName="ITEM">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table tableName="BASKET">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table tableName="ITEMPHOTO">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+    </context>
+</generatorConfiguration>

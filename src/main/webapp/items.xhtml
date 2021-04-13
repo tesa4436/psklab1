@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>Items:</h2>
+
+    <h:form>
+        <h:inputText a:placeholder="name" value="#{items.itemToCreate.name}" required="true"/>
+        <h:commandButton value="Add new item" action="#{items.createItem()}">
+            <f:param name="name" value="#{items.itemToCreate.name}" />
+        </h:commandButton>
+    </h:form>
+
+    <ol>
+        <ui:repeat value="#{items.allItems}" var="item">
+            <li>
+                <h:link value="#{item.name}" outcome="itemDetails?itemId=#{item.id}" />
+            </li>
+        </ui:repeat>
+    </ol>
+
+    <h:link outcome="index" value="Back to baskets page"/>
+</h:body>
+</html>

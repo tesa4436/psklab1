@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>Baskets:</h2>
+    <ul>
+        <ui:repeat value="#{baskets.allBaskets}" var="basket">
+            <li><h:link value="#{basket.id}" outcome="basketDetails?basketId=#{basket.id}" /></li>
+        </ui:repeat>
+    </ul>
+    <h:form>
+     <!--   <h:inputText value="#{basket.basketToCreate.name}" required="true" /> -->
+        <h:commandButton value="Add new basket" action="#{baskets.createBasket}" />
+    </h:form>
+
+    <h:link outcome="items" value="Items"/>
+
+    <h:link outcome="myBatis/baskets" value="MyBatis implementation"/>
+</h:body>
+
+</html>
