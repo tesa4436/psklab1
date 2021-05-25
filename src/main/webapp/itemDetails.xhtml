@@ -11,7 +11,7 @@
     <h2>#{itemDetails.item.name}</h2>
 
     <ui:repeat value="#{itemDetails.item.photos}" var="photo">
-        <img src="api/photo/#{photo.id}"/>
+        <img src="api/photo/#{photo.id}" width="200" height="300"/>
     </ui:repeat>
 
     <h:form prependid="false" enctype="multipart/form-data">
@@ -22,6 +22,12 @@
             <input type="hidden" name="itemId" value="#{itemDetails.item.id}" />
         </h:panelGrid>
     </h:form>
+
+    <h:form>
+        <h:commandButton action="#{itemDetails.causeOptLockException}"
+                         value="Cause OptimisticLockException"/>
+    </h:form>
+    <p>#{itemDetails.exceptionMessage}</p>
 
     <h:link outcome="items" value="Back to items page"/>
 

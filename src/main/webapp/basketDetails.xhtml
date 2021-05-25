@@ -17,15 +17,20 @@
     </ol>
 
     <h:form>
-        <h:inputText value="#{itemsForBasket.itemIdToBeAdded}" required="true"/>
+
+        <input type="hidden" name="basketId" value="#{itemsForBasket.basket.id}" />
+
+        <h:selectOneMenu value="#{itemsForBasket.itemIdToBeAdded}" >
+            <f:selectItems value="#{items.allItems}"  var="item" itemValue="#{item.id}" itemLabel="#{item.name}"/>
+        </h:selectOneMenu>
         <h:commandButton value="Add new item to basket" action="#{itemsForBasket.addItem}">
             <f:param name="testParam" value="#{itemsForBasket.basket.id}"/>
         </h:commandButton>
-        <input type="hidden" name="basketId" value="#{itemsForBasket.basket.id}" />
     </h:form>
 
     <h2>Items available:</h2>
     <ul>
+
         <ui:repeat value="#{items.allItems}" var="item">
             <li><h:link value="#{item.id}" outcome="itemDetails?itemId=#{item.id}" /></li>
         </ui:repeat>

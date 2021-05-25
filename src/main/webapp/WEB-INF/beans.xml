@@ -9,4 +9,16 @@
     <interceptors>
         <class>com.teo.interceptors.MethodLogger</class>
     </interceptors>
+
+    <alternatives>
+        <class>
+            com.teo.services.FirstNameLengthSource
+        </class>
+    </alternatives>
+
+    <decorators>
+        <class>
+        com.teo.services.PhotosControllerDecorator
+        </class>
+    </decorators>
 </beans>

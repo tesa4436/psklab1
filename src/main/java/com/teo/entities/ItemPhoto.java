@@ -25,4 +25,7 @@ public class ItemPhoto {
 
     @Lob
     private byte[] photo;
+
+    @Version
+    private long version;
 }

@@ -1,5 +1,6 @@
 package com.teo.usecases;
 
+import com.teo.OptimisticLockExceptionExample;
 import com.teo.entities.Basket;
 import com.teo.entities.Item;
 import com.teo.interceptors.LoggedInvocation;
@@ -9,21 +10,29 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
+import javax.enterprise.inject.Stereotype;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.lang.annotation.Documented;
 import java.util.Map;
 
-@Model
+@Named
+@SessionScoped
 public class ItemDetails implements Serializable {
 
     @Inject
     private ItemsDAO itemsDAO;
     @Inject
     private ImageService imageService;
+    @Inject
+    private OptimisticLockExceptionExample exceptionExample;
 
     @Getter
     @Setter
@@ -40,6 +49,14 @@ public class ItemDetails implements Serializable {
     @Getter
     @Setter
     private Part photoToBeUploaded;
+
+    public void causeOptLockException() {
+        exceptionExample.causeOptLockException();
+    }
+
+    public String getExceptionMessage() {
+        return exceptionExample.getMessage();
+    }
 
     @PostConstruct
     public void init() {
