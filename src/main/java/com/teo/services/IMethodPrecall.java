@@ -1,5 +1,5 @@
 package com.teo.services;
 
-public interface IPreMethodCall {
+public interface IMethodPrecall {
     public void preCall();
 }

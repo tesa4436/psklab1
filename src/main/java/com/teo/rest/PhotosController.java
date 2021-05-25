@@ -4,7 +4,7 @@ import com.teo.entities.ItemPhoto;
 import com.teo.interceptors.LoggedInvocation;
 import com.teo.persistence.ItemPhotosDAO;
 import com.teo.persistence.ItemsDAO;
-import com.teo.services.IPreMethodCall;
+import com.teo.services.IMethodPrecall;
 import com.teo.services.NameService;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -17,7 +17,7 @@ import java.io.InputStream;
 
 @ApplicationScoped
 @Path("/photo")
-public class PhotosController implements IPreMethodCall {
+public class PhotosController {
 
     @Inject
     private ItemPhotosDAO itemPhotosDAO;
@@ -25,17 +25,15 @@ public class PhotosController implements IPreMethodCall {
     private ItemsDAO itemsDAO;
     @Inject
     private NameService nameService;
+    @Inject
+    private IMethodPrecall methodPrecall;
 
-    @Override
-    public void preCall() {
-        System.out.println("pre call in photos controller");
-    }
 
     @Path("/{id}")
     @GET
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public Response getById(@PathParam("id") final Long id) {
-        preCall();
+        methodPrecall.preCall();
         ItemPhoto photo = itemPhotosDAO.findOne(id);
 
         if (photo == null) {

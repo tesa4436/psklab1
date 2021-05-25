@@ -5,14 +5,14 @@ import javax.decorator.Delegate;
 import javax.inject.Inject;
 
 @Decorator
-public class PhotosControllerDecorator implements IPreMethodCall {
+public class MethodPrecallDecorator implements IMethodPrecall {
     @Inject
     @Delegate
-    private IPreMethodCall preMethodCall;
+    private IMethodPrecall methodPrecall;
 
     @Override
     public void preCall() {
         System.out.println("in decorator pre call!");
-        preMethodCall.preCall();
+        methodPrecall.preCall();
     }
 }
